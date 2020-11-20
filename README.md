@@ -66,4 +66,14 @@ http://mikro-orm.io/docs/defining-entities/
 
 
 ## Run Migrations
+Flow: 
+Add entities to src/mikro-orm.config.ts
+Run this migration create command vv
 npx mikro-orm migration:create
+The migration.up() command will automatically deploy these migrations 
+
+
+More Dependencies:
+ source env.sh
+ yarn add express apollo-server-express graphql type-graphql
+ yarn add -D @types/express
