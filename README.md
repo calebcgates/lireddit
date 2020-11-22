@@ -1,4 +1,6 @@
 Tutorial:
+
+https://youtu.be/I6ypD7qv3Z8?t=3641
 https://www.youtube.com/watch?v=I6ypD7qv3Z8
 
 Extensions for VS Code that they use (I'll be using webstorm, probably similar extensions)

@@ -1,11 +1,13 @@
+import "reflect-metadata";
 import { MikroORM } from '@mikro-orm/core';
 import { __prod__ } from "./constants";
-import { Post } from "./entities/Post";
+// import { Post } from "./entities/Post";
 import microConfig from "./mikro-orm.config";
 import express from 'express';
 import {ApolloServer} from "apollo-server-express";
 import {buildSchema} from 'type-graphql';
 import {HelloResolver} from "./resolvers/hello";
+import {PostResolver} from "./resolvers/post";
 
 const main = async () => {
   console.log("dirname: ", __dirname);
@@ -18,9 +20,10 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers:[HelloResolver],
+      resolvers:[HelloResolver, PostResolver],
       validate: false
-    })
+    }),
+    context: () => ({ em: orm.em }) //context allows me to make mikro-orm available to all my resolvers for graphql
   });
 
   apolloServer.applyMiddleware({app});
