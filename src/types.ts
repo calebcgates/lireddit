@@ -1,5 +1,8 @@
 import {Connection, EntityManager, IDatabaseDriver} from "@mikro-orm/core";
+import {Request,Response} from "express";
 
-export type MyContext = { //This complains if no equal sign.  Not sure why or if needed, (makes sense you would need one)
-    em: EntityManager<any> & EntityManager<IDatabaseDriver<Connection>>
+export type MyContext = {
+    em: EntityManager<any> & EntityManager<IDatabaseDriver<Connection>>;
+    req: Request & {session: Express.Session};
+    res: Response;
 }
