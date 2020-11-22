@@ -2,6 +2,7 @@ import {Post} from "./entities/Post";
 import {__prod__} from "./constants";
 import { MikroORM } from "@mikro-orm/core";
 import path from "path";
+import {User} from "./entities/User";
 
 console.log("dirname: ",__dirname);
 export default {
@@ -10,7 +11,7 @@ export default {
         pattern: /^[\w-]+\d+\.[tj]s$/,
         disableForeignKeys: false, // Added this because of error: set session_replication_role = 'replica'; - permission denied to set parameter "session_replication_role"
     },
-    entities: [Post],
+    entities: [Post, User],
     dbName:'lireddit',
     user: 'postgres',
     type:'postgresql',

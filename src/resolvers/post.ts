@@ -1,4 +1,4 @@
-import {Resolver, Query, Ctx, Arg, Int, Mutation} from "type-graphql";
+import {Resolver, Query, Ctx, Arg, Mutation} from "type-graphql";
 import { Post} from "../entities/Post";
 import {MyContext} from "../types";
 
@@ -13,7 +13,7 @@ export class PostResolver {
 
     @Query(() => Post, {nullable: true }) //Syntax: Graphql type is Post with option to be null
     post(
-        @Arg('id', () => Int) id: number, //name:'id' is what it's called in the graphql schema when you query.
+        @Arg('id') id: number, //name:'id' is what it's called in the graphql schema when you query.
         @Ctx() { em }: MyContext
     ): Promise<Post | null> {
         return em.findOne(Post, { id });
