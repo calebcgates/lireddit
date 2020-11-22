@@ -30,18 +30,50 @@ class UserResponse { //Either errors or user can be returned, in 1 class and opt
 
 @Resolver()
 export class UserResolver {
-    @Mutation(() => User)
+    @Mutation(() => UserResponse)
     async register(
         @Arg('options') options: UsernamePasswordInput,
         @Ctx() {em}: MyContext
-    ){
+    ): Promise<UserResponse> {
+        if(options.username.length <=2){
+            return {
+                errors: [{
+                    field: 'username',
+                    message: 'length must be greater than 2'
+                }]
+            }
+        }
+
+        //Could also use a validation library to add more rules
+        if(options.password.length <=2){
+            return {
+                errors: [{
+                    field: 'password',
+                    message: 'length must be greater than 2'
+                }]
+            }
+        }
+
         const hashedPassword = await argon2.hash(options.password)
         const user = em.create(User, {
             username: options.username.toLowerCase(),
             password: hashedPassword
             });
-        await em.persistAndFlush(user);
-        return user;
+        try {
+            await em.persistAndFlush(user);
+        } catch(err) {
+            if(err.code === '23505'){// || err.detail.incudes("already exists")){
+                //duplicate username error
+                return {
+                    errors:[{
+                        field:'username',
+                        message:'username already taken'
+                    }]
+                }
+            }
+            console.log(err.message)
+        }
+        return { user };
     }
 
     @Mutation(() => UserResponse)
