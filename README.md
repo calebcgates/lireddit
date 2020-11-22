@@ -2,6 +2,7 @@ Tutorial:
 
 https://youtu.be/I6ypD7qv3Z8?t=3641
 https://www.youtube.com/watch?v=I6ypD7qv3Z8
+https://youtu.be/I6ypD7qv3Z8?t=7736
 
 Extensions for VS Code that they use (I'll be using webstorm, probably similar extensions)
 
@@ -79,3 +80,9 @@ More Dependencies:
  source env.sh
  yarn add express apollo-server-express graphql type-graphql
  yarn add -D @types/express
+
+############
+############
+
+# SETUP FRONT END
+https://youtu.be/I6ypD7qv3Z8?t=7736

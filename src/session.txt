@@ -1,0 +1,27 @@
+req.session.userId = user.id;
+
+{UserId:1} -> send that to redis
+
+redis is a key value store. this could be an example key
+1.
+sess:qalsdjkfa;lsdjflasjdf -> {userId: 1}
+
+2.
+express-session will set a cookie on my browser asdlfjadsfasdfghjkeriuwec
+
+3.
+when user makes a request
+asdlfjadsfasdfghjkeriuwec -> sent to the server
+
+4.
+on server, this cookie value is unsigned / decrypted using the secret that we defined in the code (that should be added to ENV variables)
+asdlfjadsfasdfghjkeriuwec -> sess:qalsdjkfa;lsdjflasjdf
+
+5.
+makes a request to redis
+sess:qalsdjkfa;lsdjflasjdf -> {userId: 1}
+
+6.
+stores response in
+req.session = {userId: 1}
+
